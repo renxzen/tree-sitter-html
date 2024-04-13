@@ -426,7 +426,6 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       if (eof) ADVANCE(18);
       if (lookahead == '"') ADVANCE(73);
       if (lookahead == '&') ADVANCE(3);
-      if (lookahead == '\'') ADVANCE(70);
       if (lookahead == '/') ADVANCE(6);
       if (lookahead == '<') ADVANCE(24);
       if (lookahead == '=') ADVANCE(27);
@@ -438,7 +437,6 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       END_STATE();
     case 1:
       if (lookahead == '"') ADVANCE(73);
-      if (lookahead == '\'') ADVANCE(70);
       if (('\t' <= lookahead && lookahead <= '\r') ||
           lookahead == ' ') SKIP(1)
       if (lookahead != 0 &&
@@ -456,7 +454,6 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
           ('a' <= lookahead && lookahead <= 'z')) ADVANCE(69);
       END_STATE();
     case 4:
-      if (lookahead == '\'') ADVANCE(70);
       if (('\t' <= lookahead && lookahead <= '\r') ||
           lookahead == ' ') ADVANCE(71);
       if (lookahead != 0) ADVANCE(72);
@@ -469,7 +466,6 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
           lookahead == ' ') SKIP(5)
       if (lookahead != 0 &&
           lookahead != '"' &&
-          lookahead != '\'' &&
           lookahead != '<') ADVANCE(28);
       END_STATE();
     case 6:
@@ -576,7 +572,6 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
           (lookahead < '\t' || '\r' < lookahead) &&
           lookahead != ' ' &&
           lookahead != '"' &&
-          lookahead != '\'' &&
           lookahead != '/' &&
           (lookahead < '<' || '>' < lookahead)) ADVANCE(28);
       END_STATE();
@@ -586,7 +581,6 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
           (lookahead < '\t' || '\r' < lookahead) &&
           lookahead != ' ' &&
           lookahead != '"' &&
-          lookahead != '\'' &&
           (lookahead < '<' || '>' < lookahead)) ADVANCE(29);
       END_STATE();
     case 30:
@@ -832,13 +826,9 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       ACCEPT_TOKEN(aux_sym_quoted_attribute_value_token1);
       if (('\t' <= lookahead && lookahead <= '\r') ||
           lookahead == ' ') ADVANCE(71);
-      if (lookahead != 0 &&
-          lookahead != '\'') ADVANCE(72);
       END_STATE();
     case 72:
       ACCEPT_TOKEN(aux_sym_quoted_attribute_value_token1);
-      if (lookahead != 0 &&
-          lookahead != '\'') ADVANCE(72);
       END_STATE();
     case 73:
       ACCEPT_TOKEN(anon_sym_DQUOTE);
